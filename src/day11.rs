@@ -1,5 +1,3 @@
-use num::traits::SaturatingSub;
-
 pub fn part1(input: String) -> String {
     let mut points: Vec<(usize, usize)> = Vec::new();
     let mut x_expansions = vec![true; input.split_once("\n").unwrap().0.len()];
