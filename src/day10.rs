@@ -70,11 +70,7 @@ pub fn part1(input: String) -> String {
     count.to_string()
 }
 
-fn update_pos(
-    grid: &Vec<Vec<char>>,
-    pos: (usize, usize),
-    prev_pos: (usize, usize),
-) -> (usize, usize) {
+fn update_pos(grid: &[Vec<char>], pos: (usize, usize), prev_pos: (usize, usize)) -> (usize, usize) {
     match grid[pos.1][pos.0] {
         '|' => {
             if prev_pos.1 < pos.1 {
@@ -189,7 +185,7 @@ pub fn part2(input: String) -> String {
         let s = update_pos2(&grid, second_dir, prev_second);
         prev_second = second_dir;
         second_dir = s;
-        
+
         grid[f.1][f.0].0 = true;
         grid[s.1][s.0].0 = true;
     }
@@ -212,10 +208,7 @@ pub fn part2(input: String) -> String {
                                 return false;
                             }
 
-                            match elem.1 {
-                                '|' | 'L' | 'J' | 'S' => true,
-                                _ => false,
-                            }
+                            matches!(elem.1, '|' | 'L' | 'J' | 'S')
                         })
                         .count();
 
@@ -227,10 +220,7 @@ pub fn part2(input: String) -> String {
                                 return false;
                             }
 
-                            match elem.1 {
-                                '|' | 'L' | 'J' | 'S' => true,
-                                _ => false,
-                            }
+                            matches!(elem.1, '|' | 'L' | 'J' | 'S')
                         })
                         .count();
 
@@ -243,7 +233,7 @@ pub fn part2(input: String) -> String {
 }
 
 fn update_pos2(
-    grid: &Vec<Vec<(bool, char)>>,
+    grid: &[Vec<(bool, char)>],
     pos: (usize, usize),
     prev_pos: (usize, usize),
 ) -> (usize, usize) {

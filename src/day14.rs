@@ -42,101 +42,89 @@ pub fn part2(input: String) -> String {
         cache.push(input_vec.clone());
         for y in 0..input_vec.len() {
             for x in 0..input_vec[0].len() {
-                match input_vec[y][x] {
-                    'O' => {
-                        let mut above = y.checked_sub(1).and_then(|res| {
+                if input_vec[y][x] == 'O' {
+                    let mut above = y.checked_sub(1).and_then(|res| {
+                        input_vec
+                            .get(res)
+                            .and_then(|inner| (inner[x] == '.').then_some(()))
+                    });
+                    let mut modifier = 1;
+                    while above.is_some() {
+                        modifier += 1;
+                        above = y.checked_sub(modifier).and_then(|res| {
                             input_vec
                                 .get(res)
-                                .and_then(|inner| (inner[x] == '.').then(|| ()))
+                                .and_then(|inner| (inner[x] == '.').then_some(()))
                         });
-                        let mut modifier = 1;
-                        while above.is_some() {
-                            modifier += 1;
-                            above = y.checked_sub(modifier).and_then(|res| {
-                                input_vec
-                                    .get(res)
-                                    .and_then(|inner| (inner[x] == '.').then_some(()))
-                            });
-                        }
-                        input_vec[y][x] = '.';
-                        input_vec[y - (modifier - 1)][x] = 'O';
                     }
-                    _ => (),
+                    input_vec[y][x] = '.';
+                    input_vec[y - (modifier - 1)][x] = 'O';
                 }
             }
         }
         for y in 0..input_vec.len() {
             for x in 0..input_vec[0].len() {
-                match input_vec[y][x] {
-                    'O' => {
-                        let mut left = x.checked_sub(1).and_then(|res| {
+                if input_vec[y][x] == 'O' {
+                    let mut left = x.checked_sub(1).and_then(|res| {
+                        input_vec
+                            .get(y)
+                            .and_then(|inner| (inner[res] == '.').then_some(()))
+                    });
+                    let mut modifier = 1;
+                    while left.is_some() {
+                        modifier += 1;
+                        left = x.checked_sub(modifier).and_then(|res| {
                             input_vec
                                 .get(y)
-                                .and_then(|inner| (inner[res] == '.').then(|| ()))
+                                .and_then(|inner| (inner[res] == '.').then_some(()))
                         });
-                        let mut modifier = 1;
-                        while left.is_some() {
-                            modifier += 1;
-                            left = x.checked_sub(modifier).and_then(|res| {
-                                input_vec
-                                    .get(y)
-                                    .and_then(|inner| (inner[res] == '.').then_some(()))
-                            });
-                        }
-                        input_vec[y][x] = '.';
-                        input_vec[y][x - (modifier - 1)] = 'O';
                     }
-                    _ => (),
+                    input_vec[y][x] = '.';
+                    input_vec[y][x - (modifier - 1)] = 'O';
                 }
             }
         }
         for y in (0..input_vec.len()).rev() {
             for x in 0..input_vec[0].len() {
-                match input_vec[y][x] {
-                    'O' => {
-                        let mut below = y.checked_add(1).and_then(|res| {
+                if input_vec[y][x] == 'O' {
+                    let mut below = y.checked_add(1).and_then(|res| {
+                        input_vec
+                            .get(res)
+                            .and_then(|inner| (inner[x] == '.').then_some(()))
+                    });
+                    let mut modifier = 1;
+                    while below.is_some() {
+                        modifier += 1;
+                        below = y.checked_add(modifier).and_then(|res| {
                             input_vec
                                 .get(res)
-                                .and_then(|inner| (inner[x] == '.').then(|| ()))
+                                .and_then(|inner| (inner[x] == '.').then_some(()))
                         });
-                        let mut modifier = 1;
-                        while below.is_some() {
-                            modifier += 1;
-                            below = y.checked_add(modifier).and_then(|res| {
-                                input_vec
-                                    .get(res)
-                                    .and_then(|inner| (inner[x] == '.').then_some(()))
-                            });
-                        }
-                        input_vec[y][x] = '.';
-                        input_vec[y + (modifier - 1)][x] = 'O';
                     }
-                    _ => (),
+                    input_vec[y][x] = '.';
+                    input_vec[y + (modifier - 1)][x] = 'O';
                 }
             }
         }
         for y in 0..input_vec.len() {
             for x in (0..input_vec[0].len()).rev() {
-                match input_vec[y][x] {
-                    'O' => {
-                        let mut right = x.checked_add(1).and_then(|res| {
+                if input_vec[y][x] == 'O' {
+                    let mut right = x.checked_add(1).and_then(|res| {
+                        input_vec[y]
+                            .get(res)
+                            .and_then(|inner| (*inner == '.').then_some(()))
+                    });
+                    let mut modifier = 1;
+                    while right.is_some() {
+                        modifier += 1;
+                        right = x.checked_add(modifier).and_then(|res| {
                             input_vec[y]
                                 .get(res)
                                 .and_then(|inner| (*inner == '.').then_some(()))
                         });
-                        let mut modifier = 1;
-                        while right.is_some() {
-                            modifier += 1;
-                            right = x.checked_add(modifier).and_then(|res| {
-                                input_vec[y]
-                                    .get(res)
-                                    .and_then(|inner| (*inner == '.').then_some(()))
-                            });
-                        }
-                        input_vec[y][x] = '.';
-                        input_vec[y][x + (modifier - 1)] = 'O';
                     }
-                    _ => (),
+                    input_vec[y][x] = '.';
+                    input_vec[y][x + (modifier - 1)] = 'O';
                 }
             }
         }
@@ -145,7 +133,7 @@ pub fn part2(input: String) -> String {
 
     let index = start_index + ((1000000000 - start_index) % (cache.len() - start_index));
 
-    let sum = cache[index] 
+    let sum = cache[index]
         .iter()
         .enumerate()
         .map(|(j, row)| {

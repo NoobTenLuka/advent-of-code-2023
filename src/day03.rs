@@ -19,14 +19,13 @@ pub fn part1(input: String) -> String {
                         .is_some_and(|a| a.is_ascii_digit())
                     {
                         let (low, num) = get_num(lines.0 .1, i.saturating_sub(1));
-                        
+
                         sum += num;
                         last_low = low;
                     }
                     if before.next().is_some_and(|a| a.is_ascii_digit()) {
                         let (low, num) = get_num(lines.0 .1, i);
                         if low != last_low {
-                            
                             sum += num;
                         }
                         last_low = low;
@@ -34,7 +33,6 @@ pub fn part1(input: String) -> String {
                     if before.next().is_some_and(|a| a.is_ascii_digit()) {
                         let (low, num) = get_num(lines.0 .1, i + 1);
                         if low != last_low {
-                            
                             sum += num;
                         }
                     }
@@ -43,12 +41,12 @@ pub fn part1(input: String) -> String {
                         .is_some_and(|a| a.is_ascii_digit())
                     {
                         let (_, num) = get_num(lines.1 .1, i.saturating_sub(1));
-                        
+
                         sum += num;
                     }
                     if current.nth(1).is_some_and(|a| a.is_ascii_digit()) {
                         let (_, num) = get_num(lines.1 .1, i + 1);
-                        
+
                         sum += num;
                     }
                     last_low = 0;
@@ -57,14 +55,13 @@ pub fn part1(input: String) -> String {
                         .is_some_and(|a| a.is_ascii_digit())
                     {
                         let (low, num) = get_num(lines.2 .1, i.saturating_sub(1));
-                        
+
                         sum += num;
                         last_low = low;
                     }
                     if after.next().is_some_and(|a| a.is_ascii_digit()) {
                         let (low, num) = get_num(lines.2 .1, i);
                         if low != last_low {
-                            
                             sum += num;
                         }
                         last_low = low;
@@ -72,7 +69,6 @@ pub fn part1(input: String) -> String {
                     if after.next().is_some_and(|a| a.is_ascii_digit()) {
                         let (low, num) = get_num(lines.2 .1, i + 1);
                         if low != last_low {
-                            
                             sum += num;
                         }
                     }

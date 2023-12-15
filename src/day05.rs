@@ -5,7 +5,7 @@ pub fn part1(input: String) -> String {
     let mut seeds = operations
         .next()
         .unwrap()
-        .split_once(":")
+        .split_once(':')
         .unwrap()
         .1
         .split_ascii_whitespace()
@@ -14,7 +14,7 @@ pub fn part1(input: String) -> String {
 
     operations.for_each(|operation| {
         let mut dest_map = Vec::new();
-        operation.split("\n").skip(1).for_each(|op_line| {
+        operation.split('\n').skip(1).for_each(|op_line| {
             let (dest, source_start, range) = op_line
                 .split_ascii_whitespace()
                 .map(|x| x.parse::<i64>().unwrap())
@@ -43,7 +43,7 @@ pub fn part2(input: String) -> String {
     let seeds = operations
         .next()
         .unwrap()
-        .split_once(":")
+        .split_once(':')
         .unwrap()
         .1
         .split_ascii_whitespace()
@@ -57,7 +57,7 @@ pub fn part2(input: String) -> String {
     for x in 0..i64::MAX {
         let mut current_dest = x;
         'outer: for operation in new_operations.clone() {
-            for op_line in operation.split("\n").skip(1) {
+            for op_line in operation.split('\n').skip(1) {
                 let (dest_start, source_start, range) = op_line
                     .split_ascii_whitespace()
                     .map(|s| s.parse::<i64>().unwrap())
@@ -89,7 +89,7 @@ pub fn part2_idea(input: String) -> String {
     let mut seeds = operations
         .next()
         .unwrap()
-        .split_once(":")
+        .split_once(':')
         .unwrap()
         .1
         .split_ascii_whitespace()
@@ -100,7 +100,7 @@ pub fn part2_idea(input: String) -> String {
 
     operations.for_each(|operation| {
         let mut new_ranges = Vec::new();
-        operation.split("\n").skip(1).for_each(|op_line| {
+        operation.split('\n').skip(1).for_each(|op_line| {
             let (dest, source_start, range) = op_line
                 .split_ascii_whitespace()
                 .map(|x| x.parse::<i64>().unwrap())
@@ -120,7 +120,7 @@ pub fn part2_idea(input: String) -> String {
                 }
             }
         });
-        if new_ranges.len() > 0 {
+        if !new_ranges.is_empty() {
             seeds = new_ranges;
         }
     });

@@ -10,15 +10,13 @@ pub fn part1(input: String) -> String {
                 .map(|x| x.parse::<i32>().unwrap())
                 .collect_vec();
             derivations.push(first_derivation);
-            let mut index = 0; 
+            let mut index = 0;
 
             loop {
-                let new_derivation = derivations[index] 
+                let new_derivation = derivations[index]
                     .iter()
                     .tuple_windows()
-                    .map(|(curr, next)| {
-                        next - curr
-                    })
+                    .map(|(curr, next)| next - curr)
                     .collect_vec();
 
                 derivations.push(new_derivation);
@@ -27,14 +25,13 @@ pub fn part1(input: String) -> String {
                 if derivations[index].first().unwrap() == derivations[index].last().unwrap() {
                     break;
                 }
-
             }
             let mut next_step = 0;
             for derivation in derivations.iter().rev() {
-                next_step = derivation.last().unwrap() + next_step; 
+                next_step += derivation.last().unwrap();
             }
 
-            next_step 
+            next_step
         })
         .sum::<i32>()
         .to_string()
@@ -50,15 +47,13 @@ pub fn part2(input: String) -> String {
                 .map(|x| x.parse::<i32>().unwrap())
                 .collect_vec();
             derivations.push(first_derivation);
-            let mut index = 0; 
+            let mut index = 0;
 
             loop {
-                let new_derivation = derivations[index] 
+                let new_derivation = derivations[index]
                     .iter()
                     .tuple_windows()
-                    .map(|(curr, next)| {
-                        next - curr
-                    })
+                    .map(|(curr, next)| next - curr)
                     .collect_vec();
 
                 derivations.push(new_derivation);
@@ -67,14 +62,13 @@ pub fn part2(input: String) -> String {
                 if derivations[index].first().unwrap() == derivations[index].last().unwrap() {
                     break;
                 }
-
             }
             let mut next_step = 0;
             for derivation in derivations.iter().rev() {
                 next_step = derivation.first().unwrap() - next_step;
             }
 
-            next_step 
+            next_step
         })
         .sum::<i32>()
         .to_string()

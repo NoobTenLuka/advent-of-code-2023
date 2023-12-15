@@ -1,18 +1,15 @@
 pub fn part1(input: String) -> String {
     let mut points: Vec<(usize, usize)> = Vec::new();
-    let mut x_expansions = vec![true; input.split_once("\n").unwrap().0.len()];
+    let mut x_expansions = vec![true; input.split_once('\n').unwrap().0.len()];
 
     let mut y_expansions = 0;
     for (y, line) in input.lines().enumerate() {
         let mut current_expands = true;
         for (x, char) in line.chars().enumerate() {
-            match char {
-                '#' => {
-                    points.push((x, y + y_expansions));
-                    x_expansions[x] = false;
-                    current_expands = false;
-                }
-                _ => (),
+            if char == '#' {
+                points.push((x, y + y_expansions));
+                x_expansions[x] = false;
+                current_expands = false;
             }
         }
         if current_expands {
@@ -39,19 +36,16 @@ pub fn part1(input: String) -> String {
 
 pub fn part2(input: String) -> String {
     let mut points: Vec<(usize, usize)> = Vec::new();
-    let mut x_expansions = vec![true; input.split_once("\n").unwrap().0.len()];
+    let mut x_expansions = vec![true; input.split_once('\n').unwrap().0.len()];
 
     let mut y_expansions = 0;
     for (y, line) in input.lines().enumerate() {
         let mut current_expands = true;
         for (x, char) in line.chars().enumerate() {
-            match char {
-                '#' => {
-                    points.push((x, y + (y_expansions * (1000000 - 1))));
-                    x_expansions[x] = false;
-                    current_expands = false;
-                }
-                _ => (),
+            if char == '#' {
+                points.push((x, y + (y_expansions * (1000000 - 1))));
+                x_expansions[x] = false;
+                current_expands = false;
             }
         }
         if current_expands {

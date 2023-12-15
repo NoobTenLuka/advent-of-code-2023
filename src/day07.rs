@@ -5,7 +5,7 @@ use itertools::Itertools;
 pub fn part1(input: String) -> String {
     input
         .lines()
-        .map(|line| line.split_once(" ").unwrap())
+        .map(|line| line.split_once(' ').unwrap())
         .sorted_by(|(hand1, _), (hand2, _)| sort_hands(hand2, hand1))
         .enumerate()
         .map(|(i, (_, bid))| (i + 1) * bid.parse::<usize>().unwrap())
@@ -47,7 +47,7 @@ fn sort_hands(hand1: &str, hand2: &str) -> Ordering {
     if diff_1 == 2 || diff_1 == 3 {
         let max_1 = kinds1.iter().max().unwrap();
         let max_2 = kinds2.iter().max().unwrap();
-        let ordering = max_2.cmp(&max_1);
+        let ordering = max_2.cmp(max_1);
         if ordering.is_ne() {
             return ordering;
         }
@@ -79,7 +79,7 @@ fn char_to_power(c: &char) -> u32 {
 pub fn part2(input: String) -> String {
     input
         .lines()
-        .map(|line| line.split_once(" ").unwrap())
+        .map(|line| line.split_once(' ').unwrap())
         .sorted_by(|(hand1, _), (hand2, _)| sort_hands2(hand2, hand1))
         .enumerate()
         .map(|(i, (_, bid))| (i + 1) * bid.parse::<usize>().unwrap())

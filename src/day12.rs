@@ -13,9 +13,9 @@ pub fn part1(input: String) -> String {
     input
         .lines()
         .map(|line| {
-            let (parts, nums_str) = line.split_once(" ").unwrap();
+            let (parts, nums_str) = line.split_once(' ').unwrap();
             let nums = nums_str
-                .split(",")
+                .split(',')
                 .map(|x| x.parse::<usize>().unwrap())
                 .collect_vec();
             CachedTraverse::new().traverse(parts, &nums)
@@ -28,9 +28,9 @@ pub fn part2(input: String) -> String {
     input
         .lines()
         .map(|line| {
-            let (parts, nums_str) = line.split_once(" ").unwrap();
+            let (parts, nums_str) = line.split_once(' ').unwrap();
             let nums = nums_str
-                .split(",")
+                .split(',')
                 .map(|x| x.parse::<usize>().unwrap())
                 .collect_vec();
             CachedTraverse::new().traverse(&[parts].repeat(5).join("?"), &nums.repeat(5))
@@ -82,7 +82,7 @@ impl<'a> CachedTraverse<'a> {
             && !parts[..nums[0]].contains('.')
             && (nums[0] == parts.len() || !parts[nums[0]..nums[0] + 1].contains('#'))
         {
-            result += self.traverse(&parts.get(nums[0] + 1..).unwrap_or(""), &nums[1..]);
+            result += self.traverse(parts.get(nums[0] + 1..).unwrap_or(""), &nums[1..]);
         }
 
         self.cache.insert((parts, nums), result);

@@ -36,8 +36,8 @@ pub fn part1(input: String) -> String {
                         // match found
                         return x + 1;
                     }
-                    for y in 0..block_map.len() {
-                        if block_map[y][x - modifier] != block_map[y][x + 1 + modifier] {
+                    for item in &block_map {
+                        if item[x - modifier] != item[x + 1 + modifier] {
                             // didn't match
                             break 'outer;
                         }
@@ -94,12 +94,13 @@ pub fn part2(input: String) -> String {
                 'outer: loop {
                     if x.checked_sub(modifier).is_none() || x + 1 + modifier >= block_map[0].len() {
                         // match found
-                        if smudge_found {}
-                        return x + 1;
+                        if smudge_found {
+                            return x + 1;
+                        }
                         break 'outer;
                     }
-                    for y in 0..block_map.len() {
-                        if block_map[y][x - modifier] != block_map[y][x + 1 + modifier] {
+                    for item in &block_map {
+                        if item[x - modifier] != item[x + 1 + modifier] {
                             if smudge_found {
                                 // didn't match
                                 break 'outer;
