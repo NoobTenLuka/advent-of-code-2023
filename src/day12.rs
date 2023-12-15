@@ -33,7 +33,7 @@ pub fn part2(input: String) -> String {
                 .split(",")
                 .map(|x| x.parse::<usize>().unwrap())
                 .collect_vec();
-            CachedTraverse::new().traverse(&parts.repeat(5), &nums.repeat(5))
+            CachedTraverse::new().traverse(&[parts].repeat(5).join("?"), &nums.repeat(5))
         })
         .sum::<usize>()
         .to_string()

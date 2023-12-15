@@ -94,9 +94,8 @@ pub fn part2(input: String) -> String {
                 'outer: loop {
                     if x.checked_sub(modifier).is_none() || x + 1 + modifier >= block_map[0].len() {
                         // match found
-                        if smudge_found {
-                            return x + 1;
-                        }
+                        if smudge_found {}
+                        return x + 1;
                         break 'outer;
                     }
                     for y in 0..block_map.len() {
