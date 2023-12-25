@@ -14,6 +14,7 @@ mod day13;
 mod day14;
 mod day15;
 mod day16;
+mod day19;
 
 use std::{env, fs};
 
@@ -149,6 +150,13 @@ fn main() {
                 day16::part1(input)
             } else {
                 day16::part2(input)
+            }
+        }
+        19 => {
+            if part1 {
+                day19::part1(input)
+            } else {
+                day19::part2(input)
             }
         }
         _ => panic!("Either invalid or not implemented"),
